@@ -104,7 +104,18 @@ main {
 
 @media (max-width: 500px) {
     .memory-cards {
-        padding: 0px 40px;
+        max-width: 350px;
+    }
+    header {
+        flex-direction: column;
+    }
+
+    .scoreboard::before {
+        content: "";
+        display: block;
+        height: 2px;
+        background-color: var(--text);
+        margin: 8px 0;
     }
 }
 
