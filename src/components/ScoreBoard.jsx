@@ -1,7 +1,4 @@
-function ScoreBoard() {
-    const score = 10;
-    const highScore = 20;
-
+function ScoreBoard({ score, highScore }) {
     return (
         <div className="scoreboard">
             <div className="current-score">Score: {score}</div>

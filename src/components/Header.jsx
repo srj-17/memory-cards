@@ -1,11 +1,11 @@
 import ScoreBoard from "./ScoreBoard.jsx";
 import Title from "./Title.jsx";
 
-function Header() {
+function Header(props) {
     return (
         <header>
             <Title />
-            <ScoreBoard />
+            <ScoreBoard {...props} />
         </header>
     );
 }

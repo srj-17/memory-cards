@@ -34,8 +34,10 @@ async function fetchPokemon() {
 
 fetchPokemon();
 
-function MemoryCards() {
+function MemoryCards({ score, updateScore }) {
     const [pokemons, setPokemons] = useState(null);
+    const [choosenPokemons, setChoosenPokemons] = useState(new Set());
+
     useEffect(() => {
         let ignore = false;
         fetchPokemon().then((pokes) => {
@@ -48,7 +50,20 @@ function MemoryCards() {
         };
     }, []);
 
-    function clickHandler() {
+    function clickHandler(e) {
+        // handing scores
+        const cardId = e.target.closest(".card").id;
+        if (choosenPokemons.has(cardId)) {
+            updateScore(0);
+            setChoosenPokemons(new Set());
+        } else {
+            updateScore(score + 1);
+            const newChoosenPokemons = new Set(choosenPokemons.add(cardId));
+
+            setChoosenPokemons(newChoosenPokemons);
+        }
+
+        // handling shuffling
         const usedIndexes = new Set();
         const newPokemons = [];
         pokemons.forEach((pokemon) => {
@@ -74,6 +89,7 @@ function MemoryCards() {
                                   name={pokemon.name}
                                   img={pokemon.img}
                                   key={pokemon.id}
+                                  id={pokemon.id}
                               />
                           );
                       })
