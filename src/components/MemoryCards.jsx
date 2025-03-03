@@ -12,28 +12,20 @@ async function fetchPokemon() {
         );
         const jsonResponse = await response.json();
         const pokemons = jsonResponse.results;
-        const requiredData = [];
-        pokemons.map((pokemon) => {
-            fetch(pokemon.url)
-                .then((pokemonInfo, error) => {
-                    if (error) {
-                        console.log(new Error(error));
-                    }
-                    return pokemonInfo.json();
-                })
-                .then((pokemonInfoJson, error) => {
-                    if (error) {
-                        console.log(new Error(error));
-                    }
-                    const image = pokemonInfoJson.sprites.front_default;
+        const requiredDataPromises = pokemons.map(async (pokemon) => {
+            const pokemonInfo = await fetch(pokemon.url);
+            const pokemonInfoJSON = await pokemonInfo.json();
+            const image = pokemonInfoJSON.sprites.front_default;
+            const pokemonName =
+                pokemon.name.at(0).toUpperCase() + pokemon.name.slice(1);
 
-                    requiredData.push({
-                        id: crypto.randomUUID(),
-                        name: pokemon.name,
-                        img: image,
-                    });
-                });
+            return {
+                id: crypto.randomUUID(),
+                name: pokemonName,
+                img: image,
+            };
         });
+        const requiredData = Promise.all(requiredDataPromises);
         return requiredData;
     } catch (e) {
         console.log(new Error(e));
