@@ -48,6 +48,21 @@ function MemoryCards() {
         };
     }, []);
 
+    function clickHandler() {
+        const usedIndexes = new Set();
+        const newPokemons = [];
+        pokemons.forEach((pokemon) => {
+            let newIndex;
+            do {
+                newIndex = Math.floor(Math.random() * pokemons.length);
+            } while (usedIndexes.has(newIndex));
+            usedIndexes.add(newIndex);
+            newPokemons[newIndex] = pokemon;
+        });
+
+        setPokemons(newPokemons);
+    }
+
     return (
         <main>
             <div className="memory-cards">
@@ -55,6 +70,7 @@ function MemoryCards() {
                     ? pokemons.map((pokemon) => {
                           return (
                               <Card
+                                  onClick={clickHandler}
                                   name={pokemon.name}
                                   img={pokemon.img}
                                   key={pokemon.id}

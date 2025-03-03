@@ -3,10 +3,10 @@ import Title from "./Title.jsx";
 
 function Header() {
     return (
-        <div className="header">
+        <header>
             <Title />
             <ScoreBoard />
-        </div>
+        </header>
     );
 }
 

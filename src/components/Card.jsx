@@ -1,7 +1,6 @@
-function Card({ name, img }) {
-    console.log("card");
+function Card({ name, img, onClick }) {
     return (
-        <div>
+        <div className="card" onClick={onClick}>
             <img src={img} alt={name} />
             <div className="name">{name}</div>
         </div>
