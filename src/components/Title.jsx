@@ -1,9 +1,9 @@
 function Title() {
     return (
         <div className="title">
-            <div className="name">Pokemon Memory Game</div>
+            <h1 className="name">Pokemon Memory Game</h1>
             {/*hover event only for animations*/}
-            <div className="desc">
+            <div aria-label="description" className="desc">
                 Click on any image to increase the score, but don't click it
                 twice.
             </div>

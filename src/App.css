@@ -121,10 +121,14 @@ main {
 
 .card {
     background: grey;
+    display: block;
     position: relative;
     border-radius: 8px;
     transition: transform 0.2s;
+    border: none;
     border-left: 8px solid var(--secondary);
+    font: inherit;
+    font-weight: bold;
 }
 
 .card:hover {
