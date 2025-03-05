@@ -28,7 +28,7 @@ h6 {
     --shadow-x: 2px;
     --shadow-y: -1px;
     --shadow-blur: 8px;
-    --shadow-color: white;
+    --shadow-color: var(--text);
     --std-shadow: calc(var(--shadow-x) * 1) calc(var(--shadow-y) * 1)
         var(--shadow-blur) var(--shadow-color);
 }
@@ -88,6 +88,10 @@ header {
     transform: translateX(-8px);
 }
 
+.scoreboard {
+    font-weight: bold;
+}
+
 /* main section styling */
 main {
     display: grid;
@@ -120,7 +124,7 @@ main {
 }
 
 .card {
-    background: grey;
+    background: hsl(from var(--text) h 0 90);
     display: block;
     position: relative;
     border-radius: 8px;
